@@ -19,10 +19,10 @@ for (let i = 0; i < botoes.length; i++) {
 
 const contadores = document.querySelectorAll(".contador");
 // O código "Date()" pemite qeu você coloque uma data dentro. Ao declarar parâmetros vazios (), o código selecionará o tempo local do seu computador. Porém de uma fora estranha //
-const tempoObjetivo1 = new Date("2024-10-05T00:00:00");
-const tempoObjetivo2 = new Date("2024-12-05T00:00:00");
-const tempoObjetivo3 = new Date("2024-12-30T00:00:00");
-const tempoObjetivo4 = new Date("2025-03-20T00:00:00");
+const tempoObjetivo1 = new Date("2024-04-10T00:10:40");
+const tempoObjetivo2 = new Date("2025-02-01T00:23:20");
+const tempoObjetivo3 = new Date("2024-12-30T00:04:10");
+const tempoObjetivo4 = new Date("2025-03-20T00:12:05");
 
 const tempos = [tempoObjetivo1, tempoObjetivo2, tempoObjetivo3, tempoObjetivo4];
 
@@ -34,7 +34,7 @@ function calcularTempo(tempoObjetivo) {
   // Math.ceil(), Math.floor() e Math.round() são funções matemáticas em JavaScript que são usadas para arredondar números para cima, para baixo ou para o valor mais próximo, respectivamente. //
   let segundos = Math.floor(tempoFinal / 1000);
   let minutos = Math.floor(segundos / 60);
-  let horas = Math.floor(minutos / 600);
+  let horas = Math.floor(minutos / 60);
   let dias = Math.floor(horas / 24);
 
   // O código abaixo "%=60" pega o resto da divisão, porém em um número dentro de 60 que foi o limite escolhido //
@@ -45,27 +45,25 @@ function calcularTempo(tempoObjetivo) {
   horas %= 24;
 
   if (tempoFinal > 0) {
-    return (
-      dias +
-      " dias " +
-      horas +
-      " horas " +
-      minutos +
-      " minutos " +
-      segundos +
-      " segundos"
-    );
+    return [dias,horas,minutos,segundos];
   } else {
-    return "Prazo Finalizado";
+    return [0,0,0,0];
   }
 }
 
 function atualizaCronometro() {
-    //for (let i=0; i<contadores.length; i++) {: Inicia um loop que vai de 0 até o tamanho da lista de elementos contadores. A variável i é usada como contador do loop. //
+  
+  //for (let i=0; i<contadores.length; i++) {: Inicia um loop que vai de 0 até o tamanho da lista de elementos contadores. A variável i é usada como contador do loop. //
   for (let i = 0; i < contadores.length; i++) {
-    // O código "textContent" permite que você escreva no html através do java //
-    // Na subtração do tempo ate o objetivo menos o atual mostra o quento tempo falta //
-    contadores[i].textContent = calcularTempo(tempos[i]);
+    //O índice "0" dentro dos parênteses indica a primeira posição da lista tempos;
+    //O índice “0” fora dos parênteses indica a posição do return na função calculaTempo().
+    document.getElementById("dias"+i).textContent = calcularTempo(tempos[i])[0];
+    document.getElementById("horas"+i).textContent = calcularTempo(tempos[i])[1];
+    document.getElementById("min"+i).textContent = calcularTempo(tempos[i])[2];
+    document.getElementById("seg"+i).textContent = calcularTempo(tempos[i])[3];
+  //  // O código "textContent" permite que você escreva no html através do java //
+  //  // Na subtração do tempo ate o objetivo menos o atual mostra o quento tempo falta //
+  //  contadores[i].textContent = calcularTempo(tempos[i]);
   }
 }
 
@@ -76,7 +74,7 @@ function comecaCronometro() {
   setInterval(atualizaCronometro, 1000);
 }
 
-//comecaCronometro();
+comecaCronometro();
 
 // A alguns códigos para tempo: //
 // O "getTime()" retorna o tempo em milisegundos //
