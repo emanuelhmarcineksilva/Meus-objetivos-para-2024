@@ -19,7 +19,7 @@ for (let i = 0; i < botoes.length; i++) {
 
 const contadores = document.querySelectorAll(".contador");
 // O código "Date()" pemite qeu você coloque uma data dentro. Ao declarar parâmetros vazios (), o código selecionará o tempo local do seu computador. Porém de uma fora estranha //
-const tempoObjetivo1 = new Date("2024-04-10T00:10:40");
+const tempoObjetivo1 = new Date("2024-08-09T23:59:59");
 const tempoObjetivo2 = new Date("2025-02-01T00:23:20");
 const tempoObjetivo3 = new Date("2024-12-30T00:04:10");
 const tempoObjetivo4 = new Date("2025-03-20T00:12:05");
